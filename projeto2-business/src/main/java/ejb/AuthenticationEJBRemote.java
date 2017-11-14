@@ -7,4 +7,6 @@ import javax.ejb.Remote;
  */
 @Remote
 public interface AuthenticationEJBRemote {
+    public boolean createUserAccount(String email, String Password);
+
 }

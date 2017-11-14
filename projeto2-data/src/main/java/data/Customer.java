@@ -21,6 +21,11 @@ public class Customer implements Serializable {
     private String email;
     @OneToMany(mappedBy="customer")
     private List<Car> cars;
+    @Lob
+    private byte[] passwordHash;
+
+    public Customer() {
+    }
 
     public Customer(String username, String email, byte[] passwordHash) {
         this.username = username;
@@ -34,9 +39,6 @@ public class Customer implements Serializable {
         this.passwordHash = passwordHash;
     }
 
-    @Lob
-
-    private byte[] passwordHash;
 
     public static long getSerialVersionUID() {
         return serialVersionUID;

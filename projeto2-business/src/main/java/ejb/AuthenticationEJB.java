@@ -22,11 +22,21 @@ public class AuthenticationEJB implements AuthenticationEJBRemote{
 
     public boolean createUserAccount(String email, String Password)
     {
+        try{
         Customer newCustomer = null;
         byte [] hashedPass = hashPassword(Password);
         newCustomer = new Customer(email,hashedPass);
         em.persist(newCustomer);
-§    }
+        return true;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            System.out.println("Error creating user.");
+            return false;
+        }
+
+    }
 
 
     // hash passwords funtion
