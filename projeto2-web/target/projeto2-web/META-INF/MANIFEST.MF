@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Built-By: jorgearaujo
+Class-Path: lib/javaee-api-7.0.jar lib/javax.mail-1.5.0.jar lib/activa
+ tion-1.1.jar lib/junit-3.8.1.jar lib/projeto2-business-0.0.1-SNAPSHOT
+ .jar lib/projeto2-data-0.0.1-SNAPSHOT.jar
+Created-By: IntelliJ IDEA
+Build-Jdk: 1.8.0_60
+
