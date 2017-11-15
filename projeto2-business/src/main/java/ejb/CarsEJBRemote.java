@@ -10,4 +10,6 @@ import data.Car;
 public interface CarsEJBRemote {
     public List<Car> carsFromUser(int id);
     public void addCarSV(Car car);
+    public boolean updateCustomerAccount(String email, String password, String newPassword, String confirmPassword,
+                                         String firstName, String lastName);
 }

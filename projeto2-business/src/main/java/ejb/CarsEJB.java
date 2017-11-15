@@ -47,4 +47,10 @@ public class CarsEJB implements CarsEJBRemote {
         List<Car> result = q.getResultList();
         return result;
     }
+
+    public boolean updateCustomerAccount(String email, String password, String newPassword, String confirmPassword,
+                                         String firstName, String lastName) {
+        //TODO STUFF
+        return false;
+    }
 }

@@ -1,12 +1,12 @@
 package servlet;
 
-import ejb.AuthenticationEJBRemote;
+import data.Customer;
+import ejb.CustomerEJBRemote;
 
 import javax.ejb.EJB;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
-import data.*;
 
 
 /**
@@ -16,7 +16,7 @@ import data.*;
 public class Logout extends HttpServlet{
 
     @EJB
-    private AuthenticationEJBRemote authEJB;
+    private CustomerEJBRemote authEJB;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {

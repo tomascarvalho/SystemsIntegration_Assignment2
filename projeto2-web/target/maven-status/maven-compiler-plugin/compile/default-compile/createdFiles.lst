@@ -1,4 +1,5 @@
 servlet/LoginFilter.class
+servlet/EditProfile.class
 servlet/Logout.class
 servlet/Login.class
 servlet/Register.class

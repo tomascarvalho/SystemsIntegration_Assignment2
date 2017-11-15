@@ -1,6 +1,7 @@
 package servlet;
 
-import ejb.AuthenticationEJBRemote;
+import data.Customer;
+import ejb.CustomerEJBRemote;
 
 import javax.ejb.EJB;
 import javax.servlet.annotation.WebServlet;
@@ -15,7 +16,7 @@ import java.io.IOException;
 public class Register extends HttpServlet{
 
     @EJB
-    private AuthenticationEJBRemote authEJB;
+    private CustomerEJBRemote authEJB;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -23,7 +24,7 @@ public class Register extends HttpServlet{
         String password = (String) request.getParameter("password");
 
 
-        if(authEJB.createCostumerAccount(email,password)==true){
+        if(authEJB.createCustomerAccount(email,password)==true){
 
         response.sendRedirect(request.getContextPath()+"/login.jsp");
             System.out.println("USER CREATED");

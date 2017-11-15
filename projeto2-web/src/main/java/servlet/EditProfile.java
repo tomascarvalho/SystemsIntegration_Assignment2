@@ -1,6 +1,6 @@
 package servlet;
 
-import ejb.AuthenticationEJBRemote;
+import ejb.CarsEJBRemote;
 
 import javax.ejb.EJB;
 import javax.servlet.annotation.WebServlet;
@@ -15,7 +15,7 @@ import java.io.IOException;
 public class EditProfile extends HttpServlet{
 
     @EJB
-    private AuthenticationEJBRemote authEJB;
+    private CarsEJBRemote carEJB;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -27,7 +27,7 @@ public class EditProfile extends HttpServlet{
         String firstName = (String) request.getParameter("firstName");
         String lastName = (String) request.getParameter("lastName");
 
-        if (authEJB.updateCostumerAccount(email, password, newPassword, confirmPassword, firstName, lastName)) {
+        if (carEJB.updateCustomerAccount(email, password, newPassword, confirmPassword, firstName, lastName)) {
 
             session.setAttribute("success", "Dados alterados com sucesso!");
             response.sendRedirect(request.getContextPath() + "/profile.jsp");

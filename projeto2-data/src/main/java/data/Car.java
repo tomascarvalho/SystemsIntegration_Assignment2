@@ -119,7 +119,7 @@ public class Car implements Serializable {
 
     @Override
     public String toString() {
-        return "Brand: " + this.brand + " Model: " + this.model + " Mileage: " +this.mileage + " Year: " + this.year + " Month: " + this.month + " Price: " + this.price + " Owner: " +this.customer.getUsername();
+        return "Brand: " + this.brand + " Model: " + this.model + " Mileage: " +this.mileage + " Year: " + this.year + " Month: " + this.month + " Price: " + this.price;
     }
 
 }
