@@ -22,8 +22,16 @@ public class Register extends HttpServlet{
         String email = (String) request.getParameter("email");
         String password = (String) request.getParameter("password");
 
-        authEJB.createUserAccount(email,password);
-        response.sendRedirect(request.getContextPath()+"/registerSuccess.jsp");
+
+        if(authEJB.createCostumerAccount(email,password)==true){
+
+        response.sendRedirect(request.getContextPath()+"/login.jsp");
+            System.out.println("USER CREATED");
+
+        }
+        else{
+            System.out.println("Error creating user");
+        }
     }
 
 

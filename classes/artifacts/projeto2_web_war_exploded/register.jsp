@@ -11,6 +11,12 @@
     <title>Car Adverts</title>
 </head>
 <body>
-Login Or Sign up
+<form action="register" method="post">
+        <input class="input" type="email" name="email" placeholder="Email">
+        <input class="input" type="password" name="password" placeholder="Password">
+        <button type="submit">
+            <span>Register</span>
+        </button>
+</form>
 </body>
 </html>

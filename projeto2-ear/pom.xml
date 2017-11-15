@@ -55,7 +55,6 @@
 				<artifactId>maven-ear-plugin</artifactId>
 				<configuration>
 					<finalName>firstear</finalName>
-					<defaultJavaBundleDir>lib/</defaultJavaBundleDir>
 					<skinnyWars>true</skinnyWars>
 					<modules>
 						<webModule>

@@ -21,19 +21,19 @@ public class Customer implements Serializable {
     private String email;
     @OneToMany(mappedBy="customer")
     private List<Car> cars;
-    @Lob
-    private byte[] passwordHash;
+
+    private String passwordHash;
 
     public Customer() {
     }
 
-    public Customer(String username, String email, byte[] passwordHash) {
+    public Customer(String username, String email, String passwordHash) {
         this.username = username;
         this.email = email;
         this.passwordHash = passwordHash;
     }
 
-    public Customer(String email, byte[] passwordHash) {
+    public Customer(String email, String passwordHash) {
 
         this.email = email;
         this.passwordHash = passwordHash;
@@ -68,11 +68,11 @@ public class Customer implements Serializable {
         this.email = email;
     }
 
-    public byte[] getPasswordHash() {
+    public String getPasswordHash() {
         return passwordHash;
     }
 
-    public void setPasswordHash(byte[] passwordHash) {
+    public void setPasswordHash(String passwordHash) {
         this.passwordHash = passwordHash;
     }
 }

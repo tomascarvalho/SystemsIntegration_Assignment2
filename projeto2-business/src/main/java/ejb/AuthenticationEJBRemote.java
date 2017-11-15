@@ -1,5 +1,7 @@
 package ejb;
 
+import data.Customer;
+
 import javax.ejb.Remote;
 
 /**
@@ -7,6 +9,7 @@ import javax.ejb.Remote;
  */
 @Remote
 public interface AuthenticationEJBRemote {
-    public boolean createUserAccount(String email, String Password);
+     boolean createCostumerAccount(String email, String Password);
+    Customer getCostumer(String email, String password);
 
 }
