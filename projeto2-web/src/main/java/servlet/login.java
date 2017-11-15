@@ -1,12 +1,11 @@
 package servlet;
 
-import ejb.AuthenticationEJBRemote;
-
 import javax.ejb.EJB;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 import data.*;
+import ejb.CustomerEJBRemote;
 
 
 /**
@@ -16,7 +15,7 @@ import data.*;
 public class Login extends HttpServlet{
 
     @EJB
-    private AuthenticationEJBRemote authEJB;
+    private CustomerEJBRemote authEJB;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -26,10 +25,11 @@ public class Login extends HttpServlet{
         String email = (String) request.getParameter("email");
         String password = (String) request.getParameter("password");
 
-        costumerToAuthenticate = authEJB.getCostumer(email,password);
+        costumerToAuthenticate = authEJB.readCustomer(email,password);
+
         if(costumerToAuthenticate!=null){
-        session.setAttribute("userId", costumerToAuthenticate.getId());
-        response.sendRedirect(request.getContextPath()+"/home.jsp");
+            session.setAttribute("userId", costumerToAuthenticate.getId());
+            response.sendRedirect(request.getContextPath()+"/home.jsp");
 
         }else{
             response.sendRedirect(request.getContextPath()+"/login.jsp");

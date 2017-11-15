@@ -16,29 +16,50 @@ public class Customer implements Serializable {
     @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid", strategy="uuid")
     private String id;
-    private String username;
     @Column(unique=true, nullable=false)
     private String email;
     @OneToMany(mappedBy="customer")
     private List<Car> cars;
-
+    private String firstName;
+    private String lastName;
     private String passwordHash;
+
+    public Customer(String email, String passwordHash) {
+        this.email = email;
+        this.passwordHash = passwordHash;
+    }
+
+    public Customer(String email, String firstName, String lastName, String passwordHash) {
+
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.passwordHash = passwordHash;
+    }
 
     public Customer() {
     }
 
     public Customer(String username, String email, String passwordHash) {
-        this.username = username;
         this.email = email;
         this.passwordHash = passwordHash;
     }
 
-    public Customer(String email, String passwordHash) {
-
-        this.email = email;
-        this.passwordHash = passwordHash;
+    public String getFirstName() {
+        return firstName;
     }
 
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -52,13 +73,6 @@ public class Customer implements Serializable {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
     public String getEmail() {
         return email;
