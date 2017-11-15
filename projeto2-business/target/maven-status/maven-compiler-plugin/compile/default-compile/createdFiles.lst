@@ -1,0 +1,9 @@
+security/BCrypt.class
+ejb/CarsEJBRemote.class
+crawler/TopicSender.class
+ejb/AuthenticationEJB.class
+dto/CustomerDTO.class
+ejb/AuthenticationEJBRemote.class
+crawler/Crawler.class
+ejb/CarsEJB.class
+ejb/MessageBean.class

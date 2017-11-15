@@ -20,6 +20,8 @@ public class Car implements Serializable {
     private String month;
     private int year;
     private int price;
+
+    private String imageUrl;
     @ManyToOne
     private Customer customer;
 
@@ -97,6 +99,14 @@ public class Car implements Serializable {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public Customer getCustomer() {
