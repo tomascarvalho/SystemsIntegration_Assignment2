@@ -1,15 +1,8 @@
-<<<<<<< Updated upstream
 security/BCrypt.class
-ejb/CarsEJBRemote.class
 crawler/TopicSender.class
-=======
 ejb/CustomerEJBRemote.class
 ejb/CarEJBRemote.class
->>>>>>> Stashed changes
 ejb/CarEJB.class
-ejb/CustomerEJBRemote.class
 dto/CustomerDTO.class
 crawler/Crawler.class
-ejb/CarsEJB.class
 ejb/CustomerEJB.class
-ejb/MessageBean.class

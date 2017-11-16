@@ -1,3 +1,4 @@
+/*
 package ejb;
 
 import data.Car;
@@ -49,4 +50,4 @@ public class MessageBean implements MessageListener {
             mdctx.setRollbackOnly();
         }
     }
-}
+}*/

@@ -13,5 +13,6 @@ public interface CustomerEJBRemote {
     boolean createCustomerAccount(String email, String Password);
     Customer readCustomer(String email, String password);
     Customer readCustomerById(long id);
-
+    String updateCustomerAccount(String email, String password, String newPassword, String confirmPassword,
+                                String firstName, String lastName, long uid);
 }

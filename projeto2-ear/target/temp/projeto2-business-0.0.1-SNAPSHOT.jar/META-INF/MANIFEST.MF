@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Built-By: tomas
+Built-By: jorgearaujo
 Class-Path: log4j-1.2.12.jar jsoup-1.10.3.jar commons-beanutils-1.9.3.
  jar commons-collections-3.2.2.jar netty-all-4.1.9.Final.jar artemis-c
  ommons-1.5.5.jbossorg-007.jar artemis-core-client-1.5.5.jbossorg-007.
@@ -14,5 +14,5 @@ Class-Path: log4j-1.2.12.jar jsoup-1.10.3.jar commons-beanutils-1.9.3.
  ar hibernate-annotations-3.5.6-Final.jar hibernate-commons-annotation
  s-3.2.0.Final.jar
 Created-By: Apache Maven 3.3.9
-Build-Jdk: 1.8.0_101
+Build-Jdk: 1.8.0_60
 
