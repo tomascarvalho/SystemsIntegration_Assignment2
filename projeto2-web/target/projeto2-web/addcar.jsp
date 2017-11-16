@@ -9,13 +9,9 @@
 <html>
 <%@ include file = "header.jsp" %>
 <body>
-<<<<<<< HEAD
-<form action="addCar" method="post" enctype="multipart/form-data">>
-=======
 <%@ include file = "navbar.jsp" %>
 
-<form action="addCar" method="post">
->>>>>>> master
+<form action="addCar" method="post" enctype="multipart/form-data">
     <input class="input" type="text" name="brand" placeholder="Brand">
     <input class="input" type="text" name="model" placeholder="Model">
     <input class="input" type="text" name="mileage" placeholder="Mileage">

@@ -23,7 +23,7 @@ public class CarEJB implements CarEJBRemote{
     @EJB
     CustomerEJBRemote customerRemote;
 
-    public CustomerDTO createCar(String brand, String model, int mileage, String month, int year, int price, long customerId)
+    public CustomerDTO createCar(String brand, String model, int mileage, String month, int year, int price, long customerId, String imageURL)
     {
         try{
             Customer adverter = em.find(Customer.class, customerId);
@@ -31,7 +31,7 @@ public class CarEJB implements CarEJBRemote{
                 return null;
             }
             try {
-                Car newCar = new Car(brand, model, mileage, month, year, price, adverter);
+                Car newCar = new Car(brand, model, mileage, month, year, price, adverter, imageURL);
                 adverter.getCars().add(newCar);
                 em.persist(newCar);
             } catch (Exception e) {

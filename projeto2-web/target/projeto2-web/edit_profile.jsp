@@ -24,16 +24,6 @@
             <span>Edit</span>
         </button>
     </form>
-<<<<<<< HEAD
-
-    <form action="delete_account" method="post">
-    <input class="btn btn-danger" type="submit" value="Delete Account">
-    </form>
-${error}
-${success}
-
-=======
 <%@ include file = "footer.jsp" %>
->>>>>>> master
 </body>
 </html>
