@@ -24,10 +24,10 @@
             <c:forEach items="${user.getCars()}" var="car">
                     <div class="col-lg-4 col-sm-6 portfolio-item">
                         <div class="card h-100">
-                            <a href="car/id?=${car.id}"><img class="card-img-top" src="http://placehold.it/700x400" alt="Car description"></a>
+                            <a href="car?id=${car.id}"><img class="card-img-top" src="http://placehold.it/700x400" alt="Car description"></a>
                             <div class="card-body">
                                 <h4 class="card-title">
-                                    <a href="car/id?=${car.id}">${car.brand} ${car.model}</a>
+                                    <a href="car?id=${car.id}">${car.brand} ${car.model}</a>
                                     <br>${car.price}€
                                 </h4>
                                 <p class="card-text">Brand: ${car.brand}</p>

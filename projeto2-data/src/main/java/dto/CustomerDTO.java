@@ -1,7 +1,6 @@
 package dto;
 
 import data.Car;
-import data.Customer;
 
 import java.io.Serializable;
 import java.util.List;

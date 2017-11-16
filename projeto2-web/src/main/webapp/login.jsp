@@ -16,6 +16,8 @@
         <span>Login</span>
     </button>
     ${error}
+
+    <%@ include file = "footer.jsp" %>
 </form>
 </body>
 </html>

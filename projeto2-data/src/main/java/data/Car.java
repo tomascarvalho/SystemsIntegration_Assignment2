@@ -11,7 +11,7 @@ public class Car implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int id;
+    private long id;
     private String brand;
     private String model;
     private int mileage;
@@ -43,11 +43,11 @@ public class Car implements Serializable {
         return serialVersionUID;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

@@ -1,3 +1,4 @@
 data/Car.class
 data/Customer.class
 dto/CustomerDTO.class
+dto/CarDTO.class
