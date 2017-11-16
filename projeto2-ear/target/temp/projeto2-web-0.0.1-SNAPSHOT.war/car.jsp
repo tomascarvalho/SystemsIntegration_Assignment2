@@ -13,6 +13,8 @@
 <link href="assets/css/portfolio-item.css" rel="stylesheet">
 <%@ include file = "navbar.jsp" %>
 
+<div class="container">
+
     <!-- Portfolio Item Row -->
     <div class="row">
 
@@ -37,22 +39,22 @@
         </div>
 
     </div>
-<!-- /.row -->
+    <!-- /.row -->
 
-<!-- Related Projects Row -->
-<h3 class="my-4">Related Cars</h3>
+    <!-- Related Projects Row -->
+    <h3 class="my-4">Related Cars</h3>
 
-<div class="row">
-    <c:forEach items="${car.getRelatedCars()}" var="related_car">
-        <div class="col-md-3 col-sm-6 mb-4">
-            <a href="car?id="${related_car.getId()}>
-                <img class="img-fluid" src="${related_car.imageUrl}" alt="${related_car.brand} ${related_car.model}">
-            </a>
-        </div>
-    </c:forEach>
+    <div class="row">
+        <c:forEach items="${car.getRelatedCars()}" var="related_car">
+            <div class="col-md-3 col-sm-6 mb-4">
+                <a href="car?id=${related_car.getId()}">
+                    <img class="img-fluid" src="${related_car.imageUrl}" alt="${related_car.brand} ${related_car.model}">
+                </a>
+            </div>
+        </c:forEach>
 
-</div>
-<!-- /.row -->
+    </div>
+    <!-- /.row -->
 
 </div>
 <!-- /.container -->
