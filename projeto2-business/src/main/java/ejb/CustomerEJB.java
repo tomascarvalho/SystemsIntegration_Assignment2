@@ -6,6 +6,7 @@ import security.BCrypt;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.regex.Matcher;
@@ -19,23 +20,28 @@ public class CustomerEJB implements CustomerEJBRemote{
     @PersistenceContext(name="Cars")
     EntityManager em;
 
-    public boolean createCustomerAccount(String email, String Password)
+    public String createCustomerAccount(String email, String Password, String firstName, String lastName)
     {
-        try{
-
-            Customer newCustomer = null;
-            String hashedPass = hashPassword(Password);
-            newCustomer = new Customer(email,hashedPass);
-            em.persist(newCustomer);
-            return true;
+        try {
+            Query newQuery = em.createQuery(" FROM Customer cost where cost.email=?1");
+            newQuery.setParameter(1, email);
+            Customer customer = (Customer) newQuery.getSingleResult();
+            if (customer != null) {
+                return "Email already in use!";
+            }
+        } catch (NoResultException NRE) {
+            try {
+                String hashedPass = hashPassword(Password);
+                Customer newCustomer = new Customer(email, firstName, lastName, hashedPass);
+                em.persist(newCustomer);
+                return "Success";
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("Error creating user.");
+                return "Error creating a new user!";
+            }
         }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-            System.out.println("Error creating user.");
-            return false;
-        }
-
+        return "Error creating a new user!";
     }
 
 
@@ -75,12 +81,9 @@ public class CustomerEJB implements CustomerEJBRemote{
             Query newQuery = em.createQuery(" FROM Customer cost where cost.id=?1");
             newQuery.setParameter(1, id);
             Customer customer = (Customer) newQuery.getSingleResult();
+            return customer;
 
-                return customer;
-
-
-        }catch(Exception e)
-        {
+        }catch(Exception e) {
             e.printStackTrace();
         }
         return null;
