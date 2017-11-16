@@ -25,7 +25,6 @@ public class CarEJB implements CarEJBRemote{
             Car newCar = new Car(brand,model,mileage,month,year,price,adverter);
             adverter.getCars().add(newCar);
             em.persist(newCar);
-            System.out.println(adverter.getCars().size());
             return true;
         }catch(Exception e)
         {

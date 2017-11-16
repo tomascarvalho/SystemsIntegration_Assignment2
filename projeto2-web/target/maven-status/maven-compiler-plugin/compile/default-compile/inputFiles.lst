@@ -1,6 +1,7 @@
-/Users/tomas/Documents/Engenharia Informática/MEI/IS/IS_Assignment2/projeto2-web/src/main/java/servlet/LoginFilter.java
-/Users/tomas/Documents/Engenharia Informática/MEI/IS/IS_Assignment2/projeto2-web/src/main/java/servlet/AddCar.java
-/Users/tomas/Documents/Engenharia Informática/MEI/IS/IS_Assignment2/projeto2-web/src/main/java/servlet/Register.java
-/Users/tomas/Documents/Engenharia Informática/MEI/IS/IS_Assignment2/projeto2-web/src/main/java/servlet/EditProfile.java
-/Users/tomas/Documents/Engenharia Informática/MEI/IS/IS_Assignment2/projeto2-web/src/main/java/servlet/Login.java
-/Users/tomas/Documents/Engenharia Informática/MEI/IS/IS_Assignment2/projeto2-web/src/main/java/servlet/Logout.java
+/Users/jorgearaujo/SystemsIntegration_Assignment2/projeto2-web/src/main/java/servlet/Login.java
+/Users/jorgearaujo/SystemsIntegration_Assignment2/projeto2-web/src/main/java/servlet/DeleteAccount.java
+/Users/jorgearaujo/SystemsIntegration_Assignment2/projeto2-web/src/main/java/servlet/EditProfile.java
+/Users/jorgearaujo/SystemsIntegration_Assignment2/projeto2-web/src/main/java/servlet/AddCar.java
+/Users/jorgearaujo/SystemsIntegration_Assignment2/projeto2-web/src/main/java/servlet/LoginFilter.java
+/Users/jorgearaujo/SystemsIntegration_Assignment2/projeto2-web/src/main/java/servlet/Logout.java
+/Users/jorgearaujo/SystemsIntegration_Assignment2/projeto2-web/src/main/java/servlet/Register.java

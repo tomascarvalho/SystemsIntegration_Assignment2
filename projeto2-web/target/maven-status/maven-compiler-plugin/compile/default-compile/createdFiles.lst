@@ -1,6 +1,7 @@
 servlet/LoginFilter.class
 servlet/EditProfile.class
+servlet/Login.class
+servlet/DeleteAccount.class
 servlet/Logout.class
 servlet/AddCar.class
-servlet/Login.class
 servlet/Register.class

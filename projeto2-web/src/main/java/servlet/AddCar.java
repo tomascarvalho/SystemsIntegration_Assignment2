@@ -6,27 +6,31 @@ import ejb.CarEJBRemote;
 import ejb.CustomerEJBRemote;
 
 import javax.ejb.EJB;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
+import java.io.File;
 import java.io.IOException;
+import java.util.UUID;
 
 /**
  * Created by jorgearaujo on 15/11/2017.
  */
 @WebServlet("/addCar")
+@MultipartConfig(fileSizeThreshold=1024*1024*2, // 2MB
+        maxFileSize=1024*1024*10,      // 10MB
+        maxRequestSize=1024*1024*50)
 public class AddCar extends HttpServlet {
 
     @EJB
     private CustomerEJBRemote authEJB;
     @EJB
     private CarEJBRemote carRemote;
-
+    private static final String SAVE_DIR="images";
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
         HttpSession session = request.getSession();
         String brand = request.getParameter("brand");
@@ -36,10 +40,28 @@ public class AddCar extends HttpServlet {
         int year =  Integer.parseInt(request.getParameter("year"));
         int price = Integer.parseInt(request.getParameter("price"));
         long adverterId = (long) session.getAttribute("userId");
+
+        //dumb path
+        String savePath = "/Users/jorgearaujo/SystemsIntegration_Assignment2/images"; //specify your path here
+        File fileSaveDir=new File(savePath);
+
+        //check dir existence
+        if(!fileSaveDir.exists()){
+            fileSaveDir.mkdir();
+        }
+
         if(carRemote.createCar(brand,model,mileage,month,year,price,adverterId))
         {
+
             session.setAttribute("notification", "Car Adverted Successfully");
-            response.sendRedirect(request.getContextPath() +"/addcar.jsp");
+            //save photo
+            UUID photoUuid = UUID.randomUUID();
+            Part part=request.getPart("photo");
+            String filename = getFileName(part);
+            String newFilename =  File.separator+photoUuid+filename;
+            part.write(savePath + newFilename);
+            session.setAttribute("imagePath",newFilename);
+            response.sendRedirect(request.getContextPath()+"/imageDisplay.jsp");
 
         }
         else
@@ -48,5 +70,16 @@ public class AddCar extends HttpServlet {
                 response.sendRedirect(request.getContextPath()+"/addcar.jsp");
 
             }
+    }
+
+    private String getFileName(final Part part) {
+        final String partHeader = part.getHeader("content-disposition");
+        for (String content : part.getHeader("content-disposition").split(";")) {
+            if (content.trim().startsWith("filename")) {
+                return content.substring(
+                        content.indexOf('=') + 1).trim().replace("\"", "");
+            }
+        }
+        return null;
     }
 }
