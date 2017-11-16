@@ -1,6 +1,7 @@
 package ejb;
 
 import data.Customer;
+import dto.CustomerDTO;
 import security.BCrypt;
 
 import javax.ejb.Stateless;
@@ -40,16 +41,22 @@ public class CustomerEJB implements CustomerEJBRemote{
 
 
     // get costumer with email and password hash
-    public long readCustomer(String email, String password)
+    public CustomerDTO readCustomer(String email, String password)
     {
         try{
             Query newQuery = em.createQuery(" FROM Customer cost where cost.email=?1");
             newQuery.setParameter(1, email);
             System.out.println(email);
-            Customer costumerToAuth = (Customer) newQuery.getSingleResult();
-            if(BCrypt.checkpw(password,costumerToAuth.getPasswordHash()) == true)
+            Customer customerToAuth = (Customer) newQuery.getSingleResult();
+            if(BCrypt.checkpw(password, customerToAuth.getPasswordHash()) == true)
             {
-                return costumerToAuth.getId();
+                CustomerDTO customerDTO = new CustomerDTO();
+                customerDTO.setId(customerToAuth.getId());
+                customerDTO.setFirstName(customerToAuth.getFirstName());
+                customerDTO.setLastName(customerToAuth.getLastName());
+                customerDTO.setEmail(customerToAuth.getEmail());
+                customerDTO.setCars(customerToAuth.getCars());
+                return customerDTO;
             }
 
 
@@ -57,7 +64,7 @@ public class CustomerEJB implements CustomerEJBRemote{
         {
             e.printStackTrace();
         }
-        return -1;
+        return null;
 
     }
 

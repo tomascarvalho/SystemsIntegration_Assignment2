@@ -1,5 +1,7 @@
 package ejb;
 
+import dto.CustomerDTO;
+
 import javax.ejb.Remote;
 
 /**
@@ -7,5 +9,5 @@ import javax.ejb.Remote;
  */
 @Remote
 public interface CarEJBRemote {
-    boolean createCar(String brand, String model, int mileage, String month, int year, int price, long customerId);
+    CustomerDTO createCar(String brand, String model, int mileage, String month, int year, int price, long customerId);
 }

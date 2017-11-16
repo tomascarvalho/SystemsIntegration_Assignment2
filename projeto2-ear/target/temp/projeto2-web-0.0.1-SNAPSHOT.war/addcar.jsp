@@ -7,10 +7,10 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head>
-    <title>New Car</title>
-</head>
+<%@ include file = "header.jsp" %>
 <body>
+<%@ include file = "navbar.jsp" %>
+
 <form action="addCar" method="post">
     <input class="input" type="text" name="brand" placeholder="Brand">
     <input class="input" type="text" name="model" placeholder="Model">
@@ -23,5 +23,6 @@
     </button>
     ${notification}
 </form>
+<%@ include file = "footer.jsp" %>
 </body>
 </html>

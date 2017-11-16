@@ -1,6 +1,7 @@
 package servlet;
 
 import data.Customer;
+import dto.CustomerDTO;
 import ejb.CarEJB;
 import ejb.CarEJBRemote;
 import ejb.CustomerEJBRemote;
@@ -36,17 +37,19 @@ public class AddCar extends HttpServlet {
         int year =  Integer.parseInt(request.getParameter("year"));
         int price = Integer.parseInt(request.getParameter("price"));
         long adverterId = (long) session.getAttribute("userId");
-        if(carRemote.createCar(brand,model,mileage,month,year,price,adverterId))
+        CustomerDTO customerDTO = carRemote.createCar(brand,model,mileage,month,year,price,adverterId);
+        if(customerDTO != null)
         {
             session.setAttribute("notification", "Car Adverted Successfully");
+            session.setAttribute("user", customerDTO);
             response.sendRedirect(request.getContextPath() +"/addcar.jsp");
 
         }
         else
-            {
-                session.setAttribute("notification", "Advert not inserted successfully");
-                response.sendRedirect(request.getContextPath()+"/addcar.jsp");
+        {
+            session.setAttribute("notification", "Advert not inserted successfully");
+            response.sendRedirect(request.getContextPath()+"/addcar.jsp");
 
-            }
+        }
     }
 }

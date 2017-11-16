@@ -2,8 +2,6 @@ package data;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
-
 /**
  * Entity implementation class for Entity: Car
  *

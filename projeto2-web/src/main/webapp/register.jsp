@@ -7,9 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head>
-    <title>Car Adverts</title>
-</head>
+<%@ include file = "header.jsp" %>
 <body>
 <form action="register" method="post">
         <input class="input" type="email" name="email" placeholder="Email">
@@ -18,5 +16,6 @@
             <span>Register</span>
         </button>
 </form>
+<%@ include file = "footer.jsp" %>
 </body>
 </html>
