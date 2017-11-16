@@ -15,7 +15,7 @@ public class Customer implements Serializable {
     long id;
     @Column(unique=true, nullable=false)
     private String email;
-    @OneToMany(mappedBy="customer",fetch=FetchType.EAGER)
+    @OneToMany(mappedBy="customer",fetch=FetchType.EAGER, cascade = CascadeType.REMOVE)
     private List<Car> cars;
     private String firstName;
     private String lastName;
