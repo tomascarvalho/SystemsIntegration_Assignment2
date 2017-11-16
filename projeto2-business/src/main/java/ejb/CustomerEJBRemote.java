@@ -12,5 +12,6 @@ import javax.ejb.Remote;
 public interface CustomerEJBRemote {
     boolean createCustomerAccount(String email, String Password);
     Customer readCustomer(String email, String password);
+    Customer readCustomerById(long id);
 
 }

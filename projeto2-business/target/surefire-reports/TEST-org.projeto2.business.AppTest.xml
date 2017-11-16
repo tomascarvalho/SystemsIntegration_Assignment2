@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<<<<<<< Updated upstream
 <testsuite tests="1" failures="0" name="org.projeto2.business.AppTest" time="0.006" errors="0" skipped="0">
+=======
+<testsuite tests="1" failures="0" name="org.projeto2.business.AppTest" time="0.001" errors="0" skipped="0">
+>>>>>>> Stashed changes
   <properties>
     <property name="idea.version" value="2017.2.5"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
@@ -64,5 +68,9 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
+<<<<<<< Updated upstream
   <testcase classname="org.projeto2.business.AppTest" name="testApp" time="0.006"/>
+=======
+  <testcase classname="org.projeto2.business.AppTest" name="testApp" time="0.001"/>
+>>>>>>> Stashed changes
 </testsuite>

@@ -3,8 +3,12 @@ package data;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+
+import static javax.persistence.FetchType.LAZY;
 
 /**
  * Created by jorgearaujo on 14/11/2017.
@@ -12,13 +16,11 @@ import java.util.List;
 @Entity
 public class Customer implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(generator="system-uuid")
-    @GenericGenerator(name="system-uuid", strategy="uuid")
-    private String id;
+    @Id @GeneratedValue
+    long id;
     @Column(unique=true, nullable=false)
     private String email;
-    @OneToMany(mappedBy="customer")
+    @OneToMany(mappedBy="customer",fetch=FetchType.EAGER)
     private List<Car> cars;
     private String firstName;
     private String lastName;
@@ -36,6 +38,7 @@ public class Customer implements Serializable {
         this.lastName = lastName;
         this.passwordHash = passwordHash;
     }
+
 
     public Customer() {
     }
@@ -65,14 +68,13 @@ public class Customer implements Serializable {
         return serialVersionUID;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
-
 
     public String getEmail() {
         return email;
@@ -88,5 +90,14 @@ public class Customer implements Serializable {
 
     public void setPasswordHash(String passwordHash) {
         this.passwordHash = passwordHash;
+    }
+
+    @Transactional
+    public List<Car> getCars() {
+        return cars;
+    }
+
+    public void setCars(List<Car> cars) {
+        this.cars = cars;
     }
 }
