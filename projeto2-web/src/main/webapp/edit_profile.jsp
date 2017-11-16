@@ -19,7 +19,7 @@
     <input class="input" type="text" name="firstName" placeholder="First Name">
     <input class="input" type="text" name="lastName" placeholder="Last Name">
     <button type="submit">
-        <span>Register</span>
+        <span>Edit</span>
     </button>
 </form>
 </body>

@@ -61,6 +61,25 @@ public class CustomerEJB implements CustomerEJBRemote{
 
     }
 
+    // get costumer with email and password hash
+    public Customer readCustomerById(long id)
+    {
+        try{
+            Query newQuery = em.createQuery(" FROM Customer cost where cost.id=?1");
+            newQuery.setParameter(1, id);
+            Customer customer = (Customer) newQuery.getSingleResult();
+
+                return customer;
+
+
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+
+    }
+
     public String hashPassword(String password)
     {
         String hashed =  BCrypt.hashpw(password,BCrypt.gensalt());
@@ -89,7 +108,7 @@ public class CustomerEJB implements CustomerEJBRemote{
         }
         System.out.println("Found Customer: " + toUpdate.toString());
 
-        if (email != null && !email.equals(toUpdate.getEmail())) {
+        if (!email.equals(toUpdate.getEmail()) && email.length() > 1) {
             if (validate(email)) {
                 toUpdate.setEmail(email);
                 response = "Success";
@@ -97,7 +116,7 @@ public class CustomerEJB implements CustomerEJBRemote{
                 return (response = "Invalid Email");
             }
         }
-        if(password != null && newPassword != null && confirmPassword != null && BCrypt.checkpw(password,toUpdate.getPasswordHash()) == true) {
+        if(password.length() > 6 &&  BCrypt.checkpw(password,toUpdate.getPasswordHash()) == true) {
             if (newPassword.equals(confirmPassword) && newPassword.length()< 6) {
                 toUpdate.setPasswordHash(hashPassword(newPassword));
                 response = "Success";
@@ -106,18 +125,20 @@ public class CustomerEJB implements CustomerEJBRemote{
             }
         }
 
-        if (firstName != null && !firstName.equals(toUpdate.getFirstName())) {
+        if (firstName.length() > 1 && !firstName.equals(toUpdate.getFirstName())) {
             if (firstName.length() >= 2) {
                 toUpdate.setFirstName(firstName);
+                System.out.println("Updated first name to: "+ firstName);
                 response = "Success";
             } else {
                 return (response = "Invalid First Name");
             }
         }
 
-        if (lastName != null && !lastName.equals(toUpdate.getLastName())) {
+        if (lastName.length() > 1 && !lastName.equals(toUpdate.getLastName())) {
             if (lastName.length() >= 2) {
                 toUpdate.setLastName(lastName);
+                System.out.println("Updated last name to: "+ lastName);
                 response = "Success";
             } else {
                 return (response = "Invalid Last Name");

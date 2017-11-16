@@ -14,6 +14,9 @@
 <a class="button" href="logout">
     <span>Logout</span>
 </a>
-</span>
+
+<a class="button" href="addcar.jsp">
+    <span>Add a new car advert </span>
+</a>
 </body>
 </html>

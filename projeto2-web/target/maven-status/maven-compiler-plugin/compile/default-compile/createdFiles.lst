@@ -1,6 +1,6 @@
 servlet/LoginFilter.class
 servlet/EditProfile.class
 servlet/Logout.class
+servlet/AddCar.class
 servlet/Login.class
 servlet/Register.class
-servlet/CarsFromUser.class

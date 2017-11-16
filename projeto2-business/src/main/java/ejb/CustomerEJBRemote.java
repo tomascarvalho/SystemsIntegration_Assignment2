@@ -14,5 +14,7 @@ public interface CustomerEJBRemote {
     long readCustomer(String email, String password);
     String updateCustomerAccount(String email, String password, String newPassword, String confirmPassword,
                                          String firstName, String lastName, long uid);
+    Customer readCustomerById(long id);
+
 
 }

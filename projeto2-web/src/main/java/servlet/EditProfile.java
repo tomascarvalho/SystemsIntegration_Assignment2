@@ -36,8 +36,9 @@ public class EditProfile extends HttpServlet{
         }
 
         else{
-            System.out.println("Error creating user"); // This has to be logged
+            System.out.println("Error editing user"); // This has to be logged
             session.setAttribute("error", result);
+            response.sendRedirect(request.getContextPath() + "/profile.jsp");
         }
     }
 

@@ -1,10 +1,8 @@
 security/BCrypt.class
-ejb/CarsEJBRemote.class
 crawler/TopicSender.class
 ejb/CarEJB.class
+ejb/CarEJBRemote.class
 ejb/CustomerEJBRemote.class
 dto/CustomerDTO.class
 crawler/Crawler.class
-ejb/CarsEJB.class
 ejb/CustomerEJB.class
-ejb/MessageBean.class
