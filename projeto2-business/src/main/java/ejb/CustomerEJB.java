@@ -155,4 +155,17 @@ public class CustomerEJB implements CustomerEJBRemote{
 
     }
 
+    public boolean deleteCustomer(long customerId)
+    {
+        try{
+            Customer customerToRemove = readCustomerById(customerId);
+            em.remove(customerToRemove);
+            return true;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return false;
+
+    }
+
 }
