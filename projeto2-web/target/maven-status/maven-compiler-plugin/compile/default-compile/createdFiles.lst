@@ -1,7 +1,12 @@
 servlet/LoginFilter.class
 servlet/EditProfile.class
+<<<<<<< HEAD
 servlet/Login.class
 servlet/DeleteAccount.class
+=======
+servlet/ViewCarDetails.class
+servlet/Login.class
+>>>>>>> master
 servlet/Logout.class
 servlet/AddCar.class
 servlet/Register.class

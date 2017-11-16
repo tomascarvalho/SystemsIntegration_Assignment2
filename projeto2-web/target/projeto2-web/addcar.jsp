@@ -7,11 +7,15 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head>
-    <title>New Car</title>
-</head>
+<%@ include file = "header.jsp" %>
 <body>
+<<<<<<< HEAD
 <form action="addCar" method="post" enctype="multipart/form-data">>
+=======
+<%@ include file = "navbar.jsp" %>
+
+<form action="addCar" method="post">
+>>>>>>> master
     <input class="input" type="text" name="brand" placeholder="Brand">
     <input class="input" type="text" name="model" placeholder="Model">
     <input class="input" type="text" name="mileage" placeholder="Mileage">
@@ -24,5 +28,6 @@
     </button>
     ${notification}
 </form>
+<%@ include file = "footer.jsp" %>
 </body>
 </html>

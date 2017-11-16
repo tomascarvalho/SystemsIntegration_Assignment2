@@ -1,8 +1,11 @@
 security/BCrypt.class
 crawler/TopicSender.class
 ejb/CustomerEJBRemote.class
+<<<<<<< HEAD
 ejb/CarEJBRemote.class
 ejb/CarEJB.class
 dto/CustomerDTO.class
+=======
+>>>>>>> master
 crawler/Crawler.class
 ejb/CustomerEJB.class

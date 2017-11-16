@@ -7,12 +7,12 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head>
-    <title>Profile</title>
-</head>
+<%@ include file = "header.jsp" %>
 <body>
+<%@ include file = "navbar.jsp" %>
     ${error}
     <h1>${success}</h1>
 
 </body>
+<%@ include file = "footer.jsp" %>
 </html>

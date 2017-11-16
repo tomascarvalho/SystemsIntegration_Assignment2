@@ -1,6 +1,7 @@
 package servlet;
 
 import data.Customer;
+import dto.CustomerDTO;
 import ejb.CarEJB;
 import ejb.CarEJBRemote;
 import ejb.CustomerEJBRemote;
@@ -50,10 +51,13 @@ public class AddCar extends HttpServlet {
             fileSaveDir.mkdir();
         }
 
-        if(carRemote.createCar(brand,model,mileage,month,year,price,adverterId))
+        CustomerDTO customerDTO = carRemote.createCar(brand,model,mileage,month,year,price,adverterId);
+        if(customerDTO != null)
         {
 
             session.setAttribute("notification", "Car Adverted Successfully");
+            session.setAttribute("user", customerDTO);
+            response.sendRedirect(request.getContextPath() +"/addcar.jsp");
             //save photo
             UUID photoUuid = UUID.randomUUID();
             Part part=request.getPart("photo");
@@ -65,11 +69,11 @@ public class AddCar extends HttpServlet {
 
         }
         else
-            {
-                session.setAttribute("notification", "Advert not inserted successfully");
-                response.sendRedirect(request.getContextPath()+"/addcar.jsp");
+        {
+            session.setAttribute("notification", "Advert not inserted successfully");
+            response.sendRedirect(request.getContextPath()+"/addcar.jsp");
 
-            }
+        }
     }
 
     private String getFileName(final Part part) {

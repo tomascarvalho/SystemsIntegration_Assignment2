@@ -1,2 +1,7 @@
 data/Customer.class
+<<<<<<< HEAD
 data/Car.class
+=======
+dto/CustomerDTO.class
+dto/CarDTO.class
+>>>>>>> master

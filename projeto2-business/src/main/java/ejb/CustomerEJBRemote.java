@@ -4,6 +4,7 @@
 package ejb;
 
 import data.Customer;
+import dto.CustomerDTO;
 
 import javax.ejb.Remote;
 
@@ -11,7 +12,7 @@ import javax.ejb.Remote;
 @Remote
 public interface CustomerEJBRemote {
     boolean createCustomerAccount(String email, String Password);
-    long readCustomer(String email, String password);
+    CustomerDTO readCustomer(String email, String password);
     String updateCustomerAccount(String email, String password, String newPassword, String confirmPassword,
                                          String firstName, String lastName, long uid);
     Customer readCustomerById(long id);
