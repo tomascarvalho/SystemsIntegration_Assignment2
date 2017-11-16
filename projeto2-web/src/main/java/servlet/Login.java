@@ -4,7 +4,6 @@ import javax.ejb.EJB;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
-import data.*;
 import ejb.CustomerEJBRemote;
 
 
@@ -20,15 +19,15 @@ public class Login extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        Customer costumerToAuthenticate = null;
+        long customerToAuthenticate = 0;
         HttpSession session = request.getSession();
         String email = (String) request.getParameter("email");
         String password = (String) request.getParameter("password");
 
-        costumerToAuthenticate = authEJB.readCustomer(email,password);
+        customerToAuthenticate = authEJB.readCustomer(email,password);
 
-        if(costumerToAuthenticate!=null){
-            session.setAttribute("userId", costumerToAuthenticate.getId());
+        if(customerToAuthenticate > 0){
+            session.setAttribute("userId",customerToAuthenticate );
             response.sendRedirect(request.getContextPath()+"/home.jsp");
 
         }else{

@@ -25,6 +25,19 @@ public class CarsEJB implements CarsEJBRemote {
         // TODO Auto-generated constructor stub
     }
 
+    public boolean createCar(String brand, String model, int mileage, String month, int year, int price, Customer customer)
+    {
+        try{
+            Car newCar = new Car(brand, model, mileage, month, year, price, customer);
+            em.persist(newCar);
+            return true;
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     public void addCarSV(Car car) {
         Query q = em.createQuery("from Customer where c.firstName = :n and c.lastName = :l");
         q.setParameter("n", "Stand");
@@ -48,9 +61,4 @@ public class CarsEJB implements CarsEJBRemote {
         return result;
     }
 
-    public boolean updateCustomerAccount(String email, String password, String newPassword, String confirmPassword,
-                                         String firstName, String lastName) {
-        //TODO STUFF
-        return false;
-    }
 }

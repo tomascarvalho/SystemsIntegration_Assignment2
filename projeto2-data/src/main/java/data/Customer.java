@@ -89,4 +89,9 @@ public class Customer implements Serializable {
     public void setPasswordHash(String passwordHash) {
         this.passwordHash = passwordHash;
     }
+
+    @Override
+    public String toString() {
+        return firstName + " " + lastName + " email: " + email  + " id: " + id;
+    }
 }
