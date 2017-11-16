@@ -6,17 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file = "header.jsp" %>
 <html>
-<head>
-    <title>Title</title>
-</head>
 <body>
-<a class="button" href="logout">
-    <span>Logout</span>
-</a>
-
-<a class="button" href="addcar.jsp">
-    <span>Add a new car advert </span>
-</a>
+    <%@ include file = "navbar.jsp" %>
 </body>
 </html>
