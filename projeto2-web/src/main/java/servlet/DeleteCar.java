@@ -1,5 +1,8 @@
 package servlet;
 
+import data.Customer;
+import dto.CarDTO;
+import dto.CustomerDTO;
 import ejb.CarEJBRemote;
 import ejb.CustomerEJBRemote;
 
@@ -10,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-
 /**
  * Created by jorgearaujo on 16/11/2017.
  */
@@ -19,26 +21,29 @@ public class DeleteCar extends HttpServlet {
 
     @EJB
     private CarEJBRemote carEJBRemote;
+    private CustomerEJBRemote customerEJBRemote;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         HttpSession session = request.getSession();
 
-        long carId = (long) session.getAttribute("id");
+        long carId = Long.parseLong(request.getParameter("carID"));
+        CustomerDTO customerDTO = (CustomerDTO) session.getAttribute("user");
+        CustomerDTO result  = carEJBRemote.carDelete(carId, customerDTO.getId());
 
-        boolean result = carEJBRemote.carDelete(carId);
-
-        if (result) {
-            session.removeAttribute("id");
+        if (result != null) {
             session.setAttribute("success", result);
-            response.sendRedirect(request.getContextPath());
+            session.removeAttribute("user");
+            session.setAttribute("user", result);
+
+            response.sendRedirect(request.getContextPath()+"/home.jsp");
         }
 
         else{
             System.out.println("Error deleting car"); // This has to be logged
             session.setAttribute("error", result);
-            response.sendRedirect(request.getContextPath());
+            response.sendRedirect(request.getContextPath()+"/home.jsp");
         }
     }
 

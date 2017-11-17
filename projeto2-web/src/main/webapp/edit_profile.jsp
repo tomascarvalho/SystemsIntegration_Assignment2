@@ -26,7 +26,7 @@
     </form>
 
 <form action="delete_account" method="post">
-<input class="btn btn-danger" type="submit" href="delete_account" value="Delete Account">
+<input class="btn btn-danger" type="submit"  value="Delete Account">
 </form>
 
 <%@ include file = "footer.jsp" %>

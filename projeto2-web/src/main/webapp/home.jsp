@@ -35,6 +35,10 @@
                                 <p class="card-text">Mileage: ${car.mileage}km</p>
                                 <p class="card-text">Year: ${car.year}</p>
                                 <p class="card-text">Month: ${car.month}</p>
+                                <form action="delete_car" method="post">
+                                    <input type="hidden" name="carID" value="${car.id}">
+                                    <input class="btn btn-danger" type="submit" value="Delete Car">
+                                </form>
                             </div>
                         </div>
                     </div>

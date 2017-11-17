@@ -75,13 +75,31 @@ public class CustomerEJB implements CustomerEJBRemote{
     }
 
     // get costumer with email and password hash
-    public Customer readCustomerById(long id)
-    {
-        try{
+    public Customer readCustomerById(long id) {
+        try {
             Query newQuery = em.createQuery(" FROM Customer cost where cost.id=?1");
             newQuery.setParameter(1, id);
             Customer customer = (Customer) newQuery.getSingleResult();
             return customer;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public CustomerDTO readCustomerDTOById(long id)
+    {
+        try{
+            Customer customer = (Customer) em.find(Customer.class,id);
+            CustomerDTO customerDTO = new CustomerDTO();
+            customerDTO.setId(customer.getId());
+            System.out.println("customer ID: "+customerDTO.getId());
+            customerDTO.setFirstName(customer.getFirstName());
+            customerDTO.setLastName(customer.getLastName());
+            customerDTO.setEmail(customer.getEmail());
+            customerDTO.setCars(customer.getCars());
+            return customerDTO;
 
         }catch(Exception e) {
             e.printStackTrace();

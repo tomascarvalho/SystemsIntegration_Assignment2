@@ -89,16 +89,29 @@ public class CarEJB implements CarEJBRemote{
         }
     }
 
-    public boolean carDelete(long carID)
+    public CustomerDTO carDelete(long carID, long customerID)
     {
         try{
-        Car car = em.find(Car.class,carID);
-        em.remove(car);
-        return true;
+            Car car = em.find(Car.class,carID);
+            long userID = car.getCustomer().getId();
+            if (userID != customerID) {
+                return null;
+            }
+            em.remove(car);
+            CustomerDTO customerDTO = new CustomerDTO();
+            Customer customer = em.find(Customer.class, userID);
+            customer.getCars().remove(car);
+            customerDTO.setId(customer.getId());
+            customerDTO.setFirstName(customer.getFirstName());
+            customerDTO.setLastName(customer.getLastName());
+            customerDTO.setEmail(customer.getEmail());
+            customerDTO.setCars(customer.getCars());
+
+            return customerDTO;
         }catch(Exception e)
         {
             e.printStackTrace();
-            return  false;
+            return  null;
         }
 
     }
