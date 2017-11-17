@@ -88,4 +88,18 @@ public class CarEJB implements CarEJBRemote{
             return null;
         }
     }
+
+    public boolean carDelete(long carID)
+    {
+        try{
+        Car car = em.find(Car.class,carID);
+        em.remove(car);
+        return true;
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+            return  false;
+        }
+
+    }
 }
