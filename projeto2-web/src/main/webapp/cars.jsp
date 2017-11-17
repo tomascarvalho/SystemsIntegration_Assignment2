@@ -22,7 +22,7 @@
         <c:forEach items="${cars}" var="car">
             <div class="col-lg-4 col-sm-6 portfolio-item">
                 <div class="card h-100">
-                    <a href="car?id=${car.id}"><img class="card-img-top" src="http://placehold.it/700x400" alt="Car description"></a>
+                    <a href="car?id=${car.id}"><img class="card-img-top" src="${car.imageUrl}" alt="${car.brand} ${car.model}"></a>
                     <div class="card-body">
                         <h4 class="card-title">
                             <a href="car?id=${car.id}">${car.brand} ${car.model}</a>

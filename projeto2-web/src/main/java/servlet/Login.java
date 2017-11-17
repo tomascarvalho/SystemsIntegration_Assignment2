@@ -23,6 +23,8 @@ public class Login extends HttpServlet{
         HttpSession session = request.getSession();
         String email = (String) request.getParameter("email");
         String password = (String) request.getParameter("password");
+        session.removeAttribute("error");
+        session.removeAttribute("success");
 
         CustomerDTO customerToAuthenticate = authEJB.readCustomer(email,password);
 

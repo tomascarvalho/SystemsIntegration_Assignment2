@@ -1,6 +1,8 @@
 package ejb;
 
+import data.Car;
 import data.Customer;
+import dto.CarDTO;
 import dto.CustomerDTO;
 import security.BCrypt;
 
@@ -9,6 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -57,11 +60,7 @@ public class CustomerEJB implements CustomerEJBRemote{
             if(BCrypt.checkpw(password, customerToAuth.getPasswordHash()) == true)
             {
                 CustomerDTO customerDTO = new CustomerDTO();
-                customerDTO.setId(customerToAuth.getId());
-                customerDTO.setFirstName(customerToAuth.getFirstName());
-                customerDTO.setLastName(customerToAuth.getLastName());
-                customerDTO.setEmail(customerToAuth.getEmail());
-                customerDTO.setCars(customerToAuth.getCars());
+                customerDTO = customerToCustomerDTO(customerToAuth);
                 return customerDTO;
             }
 
@@ -75,13 +74,26 @@ public class CustomerEJB implements CustomerEJBRemote{
     }
 
     // get costumer with email and password hash
-    public Customer readCustomerById(long id)
-    {
-        try{
+    public Customer readCustomerById(long id) {
+        try {
             Query newQuery = em.createQuery(" FROM Customer cost where cost.id=?1");
             newQuery.setParameter(1, id);
             Customer customer = (Customer) newQuery.getSingleResult();
             return customer;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public CustomerDTO readCustomerDTOById(long id)
+    {
+        try{
+            Customer customer = (Customer) em.find(Customer.class,id);
+            CustomerDTO customerDTO = new CustomerDTO();
+            customerDTO = customerToCustomerDTO(customer);
+            return customerDTO;
 
         }catch(Exception e) {
             e.printStackTrace();
@@ -171,4 +183,34 @@ public class CustomerEJB implements CustomerEJBRemote{
 
     }
 
+    public CarDTO carToCarDTO(Car car) {
+        CarDTO carDTO = new CarDTO();
+        carDTO.setId(car.getId());
+        carDTO.setBrand(car.getBrand());
+        carDTO.setModel(car.getModel());
+        carDTO.setMileage(car.getMileage());
+        carDTO.setPrice(car.getPrice());
+        carDTO.setOwnerId(car.getCustomer().getId());
+        carDTO.setImageUrl(car.getImageUrl());
+        carDTO.setYear(car.getYear());
+        carDTO.setMonth(car.getMonth());
+
+        return carDTO;
+    }
+
+    public CustomerDTO customerToCustomerDTO(Customer customer) {
+        CustomerDTO customerDTO = new CustomerDTO();
+        ArrayList cars = new ArrayList();
+        customerDTO.setId(customer.getId());
+        customerDTO.setFirstName(customer.getFirstName());
+        customerDTO.setLastName(customer.getLastName());
+        customerDTO.setEmail(customer.getEmail());
+        for (Car car : customer.getCars()) {
+            cars.add(carToCarDTO(car));
+        }
+        customerDTO.setCars(cars);
+
+        return customerDTO;
+    }
 }
+

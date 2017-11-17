@@ -16,8 +16,8 @@ public class CarDTO implements Serializable {
     public int year;
     public int price;
     public int mileage;
-    public Customer owner;
-    public List<Car> relatedCars;
+    public long ownerId;
+    public List<CarDTO> relatedCars;
 
 
     public CarDTO() {
@@ -88,19 +88,20 @@ public class CarDTO implements Serializable {
         this.mileage = mileage;
     }
 
-    public Customer getOwner() {
-        return owner;
+
+    public long getOwnerId() {
+        return ownerId;
     }
 
-    public void setOwner(Customer owner) {
-        this.owner = owner;
+    public void setOwnerId(long ownerId) {
+        this.ownerId = ownerId;
     }
 
-    public List<Car> getRelatedCars() {
+    public List<CarDTO> getRelatedCars() {
         return relatedCars;
     }
 
-    public void setRelatedCars(List<Car> relatedCars) {
+    public void setRelatedCars(List<CarDTO> relatedCars) {
         this.relatedCars = relatedCars;
     }
 }

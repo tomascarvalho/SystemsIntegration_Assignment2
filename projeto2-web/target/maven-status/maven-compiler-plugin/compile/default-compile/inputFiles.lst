@@ -2,7 +2,9 @@
 /Users/tomas/Documents/Engenharia Informática/MEI/IS/IS_Assignment2/projeto2-web/src/main/java/servlet/ViewCarDetails.java
 /Users/tomas/Documents/Engenharia Informática/MEI/IS/IS_Assignment2/projeto2-web/src/main/java/servlet/AddCar.java
 /Users/tomas/Documents/Engenharia Informática/MEI/IS/IS_Assignment2/projeto2-web/src/main/java/servlet/Register.java
+/Users/tomas/Documents/Engenharia Informática/MEI/IS/IS_Assignment2/projeto2-web/src/main/java/servlet/DeleteCar.java
 /Users/tomas/Documents/Engenharia Informática/MEI/IS/IS_Assignment2/projeto2-web/src/main/java/servlet/EditProfile.java
+/Users/tomas/Documents/Engenharia Informática/MEI/IS/IS_Assignment2/projeto2-web/src/main/java/servlet/FollowCar.java
 /Users/tomas/Documents/Engenharia Informática/MEI/IS/IS_Assignment2/projeto2-web/src/main/java/servlet/Login.java
 /Users/tomas/Documents/Engenharia Informática/MEI/IS/IS_Assignment2/projeto2-web/src/main/java/servlet/Logout.java
 /Users/tomas/Documents/Engenharia Informática/MEI/IS/IS_Assignment2/projeto2-web/src/main/java/servlet/Cars.java
