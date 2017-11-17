@@ -17,10 +17,10 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="addcar.jsp">Adicionar Carro</a>
+                        <a class="nav-link" href="addcar.jsp">Add a Car</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="edit_profile.jsp">Editar Perfil</a>
+                        <a class="nav-link" href="edit_profile.jsp">Edit Profile</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="cars">Search Cars</a>

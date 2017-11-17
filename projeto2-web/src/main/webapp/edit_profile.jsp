@@ -14,19 +14,18 @@
 
 
 <form action="edit_profile" method="post">
-        <input class="input" type="email" name="email" placeholder="Email">
-        <input class="input" type="password" name="password" placeholder="Password">
-        <input class="input" type="password" name="newPassword" placeholder="New Password" minlength="6">
-        <input class="input" type="password" name="confirmPassword" placeholder="Confirm Password" minlength="6">
-        <input class="input" type="text" name="firstName" placeholder="First Name">
-        <input class="input" type="text" name="lastName" placeholder="Last Name">
-        <button type="submit">
-            <span>Edit</span>
-        </button>
-    </form>
+    <input class="input" type="password" name="password" placeholder="Password">
+    <input class="input" type="password" name="newPassword" placeholder="New Password" minlength="6">
+    <input class="input" type="password" name="confirmPassword" placeholder="Confirm Password" minlength="6">
+    <input class="input" type="text" name="firstName" placeholder="First Name">
+    <input class="input" type="text" name="lastName" placeholder="Last Name">
+    <button type="submit">
+        <span>Edit</span>
+    </button>
+</form>
 
 <form action="delete_account" method="post">
-<input class="btn btn-danger" type="submit"  value="Delete Account">
+    <input class="btn btn-danger" type="submit"  value="Delete Account">
 </form>
 
 <%@ include file = "footer.jsp" %>

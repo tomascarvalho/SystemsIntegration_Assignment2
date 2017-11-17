@@ -17,7 +17,7 @@
 
     <!-- Page Heading -->
     <h1 class="my-4">Search Result</h1>
-
+    <%@ include file = "search.jsp" %>
     <div class="row">
         <c:forEach items="${cars}" var="car">
             <div class="col-lg-4 col-sm-6 portfolio-item">

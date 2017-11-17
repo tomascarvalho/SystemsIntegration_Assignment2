@@ -15,13 +15,13 @@
 <form action="edit_car" method="post">
     <input class="input" type="text" name="brand" placeholder="Brand">
     <input class="input" type="text" name="model" placeholder="Model">
-    <input class="input" type="text" name="mileage" placeholder="Mileage">
-    <input class="input" type="text" name="year" placeholder="Year">
+    <input class="input" type="number" name="mileage" placeholder="Mileage">
+    <input class="input" type="number" name="year" placeholder="Year">
     <input class="input" type="text" name="month" placeholder="Month">
-    <input class="input" type="text" name="price" placeholder="Price">
+    <input class="input" type="number" name="price" placeholder="Price">
     <input class="input" type="hidden" name="carID" value=${param.carID}>
     <button type="submit">
-        <span>Edit ad</span>
+        <span>Edit Car</span>
     </button>
     ${notification}
 </form>

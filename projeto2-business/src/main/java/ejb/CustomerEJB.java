@@ -116,7 +116,7 @@ public class CustomerEJB implements CustomerEJBRemote{
         return matcher.find();
     }
 
-    public String updateCustomerAccount(String email, String password, String newPassword, String confirmPassword,
+    public String updateCustomerAccount(String password, String newPassword, String confirmPassword,
                                          String firstName, String lastName, long uid) {
 
         System.out.println("updateCustomerAccount");
@@ -130,14 +130,6 @@ public class CustomerEJB implements CustomerEJBRemote{
         }
         System.out.println("Found Customer: " + toUpdate.toString());
 
-        if (!email.equals(toUpdate.getEmail()) && email.length() > 1) {
-            if (validate(email)) {
-                toUpdate.setEmail(email);
-                response = "Success";
-            } else {
-                return (response = "Invalid Email");
-            }
-        }
         if(password.length() > 6 &&  BCrypt.checkpw(password,toUpdate.getPasswordHash()) == true) {
             if (newPassword.equals(confirmPassword) && newPassword.length()< 6) {
                 toUpdate.setPasswordHash(hashPassword(newPassword));

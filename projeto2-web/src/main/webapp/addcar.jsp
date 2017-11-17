@@ -14,13 +14,13 @@
 <form action="addCar" method="post" enctype="multipart/form-data">
     <input class="input" type="text" name="brand" placeholder="Brand">
     <input class="input" type="text" name="model" placeholder="Model">
-    <input class="input" type="text" name="mileage" placeholder="Mileage">
-    <input class="input" type="text" name="year" placeholder="Year">
+    <input class="input" type="number" name="mileage" placeholder="Mileage">
+    <input class="input" type="number" name="year" placeholder="Year">
     <input class="input" type="text" name="month" placeholder="Month">
-    <input class="input" type="text" name="price" placeholder="Price">
+    <input class="input" type="number" name="price" placeholder="Price">
     <input class="input" type="file" name="photo" placeholder="Photo">
     <button type="submit">
-        <span>Create new ad</span>
+        <span>Add new car</span>
     </button>
     ${notification}
 </form>

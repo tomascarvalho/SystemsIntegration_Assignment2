@@ -3,5 +3,6 @@ crawler/TopicSender.class
 ejb/CarEJB.class
 ejb/CarEJBRemote.class
 ejb/CustomerEJBRemote.class
+ejb/EmailEJB.class
 crawler/Crawler.class
 ejb/CustomerEJB.class

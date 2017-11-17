@@ -14,7 +14,6 @@ import java.util.List;
 
 import dto.CarDTO;
 import dto.CustomerDTO;
-import ejb.CustomerEJB;
 import org.jboss.logging.Logger;
 
 /**
@@ -141,7 +140,7 @@ public class CarEJB implements CarEJBRemote{
 
     }
 
-    public String updateCarAccount(String brand, String model, String mileage, String month, String year, String price, long customerId, long carId)
+    public String updateCar(String brand, String model, String mileage, String month, String year, String price, long customerId, long carId)
     {
 
         String response = "";
@@ -154,13 +153,6 @@ public class CarEJB implements CarEJBRemote{
 
         //check if car belongs to customer
         if(toUpdate.getCustomer().getId()==customerId){
-
-            System.out.println(brand);
-            System.out.printf(model);
-            System.out.println(mileage);
-            System.out.println(month);
-            System.out.println(year);
-            System.out.println(price);
 
             if(brand.length()>1 ){
                 if(!brand.equals(toUpdate.getBrand())){
@@ -215,8 +207,12 @@ public class CarEJB implements CarEJBRemote{
             if(price.length()>1){
 
                 int intPrice = Integer.parseInt(price);
-                    if(intPrice!=toUpdate.getPrice() && intPrice>0){
+                if (intPrice != toUpdate.getPrice() && intPrice > 0) {
                     toUpdate.setPrice(intPrice);
+                    for(Customer customer : toUpdate.getFollowers()) {
+                        EmailEJB email = new EmailEJB();
+                        email.send(customer.getEmail(), carId, customer.getFirstName());
+                    }
                     response = "Success";
                 }else{
                     response ="Invalid price";
@@ -275,8 +271,80 @@ public class CarEJB implements CarEJBRemote{
             return "Error following this car";
         }
 
+    }
+
+    public String unfollowCar(long carID, long userID) {
+        try {
+            Car car = em.find(Car.class, carID);
+            Customer customer = em.find(Customer.class, userID);
+            if (car.getFollowers().contains(customer)) {
+                car.getFollowers().remove(customer);
+                return "Success";
+            }
+            return "You don't follow this car";
+
+        } catch (Exception e) {
+            return "Error following this car";
+        }
 
     }
 
+    public List<CarDTO> getCarsByBrandModel(String brand, String model) {
+        Query newQuery = em.createQuery(" FROM Car c where c.brand=?1 AND c.model != ?2");
+        newQuery.setParameter(1, brand);
+        newQuery.setParameter(2, model);
+        List <Car> result = newQuery.getResultList();
+        ArrayList<CarDTO> resultDTO = new ArrayList<>();
+        for (Car car : result) {
+            resultDTO.add(carToCarDTO(car));
+        }
+        return resultDTO;
+    }
+
+    public List<CarDTO> getCarsByBrand(String brand) {
+        Query newQuery = em.createQuery(" FROM Car c where c.brand=?1");
+        newQuery.setParameter(1, brand);
+        List <Car> result = newQuery.getResultList();
+        ArrayList<CarDTO> resultDTO = new ArrayList<>();
+        for (Car car : result) {
+            resultDTO.add(carToCarDTO(car));
+        }
+        return resultDTO;
+    }
+
+    public List<CarDTO> getCarsByPrice(int price_from, int price_to) {
+        Query newQuery = em.createQuery(" FROM Car c where c.price>=?1 AND c.price <= ?2");
+        newQuery.setParameter(1, price_from);
+        newQuery.setParameter(2, price_to);
+        List <Car> result = newQuery.getResultList();
+        ArrayList<CarDTO> resultDTO = new ArrayList<>();
+        for (Car car : result) {
+            resultDTO.add(carToCarDTO(car));
+        }
+        return resultDTO;
+    }
+
+    public List<CarDTO> getCarsByKm(int km_from, int km_to) {
+        Query newQuery = em.createQuery(" FROM Car c where c.mileage>=?1 AND c.mileage <= ?2");
+        newQuery.setParameter(1, km_from);
+        newQuery.setParameter(2, km_to);
+        List <Car> result = newQuery.getResultList();
+        ArrayList<CarDTO> resultDTO = new ArrayList<>();
+        for (Car car : result) {
+            resultDTO.add(carToCarDTO(car));
+        }
+        return resultDTO;
+    }
+    public List<CarDTO> getCarsNewerThan(int year) {
+        Query newQuery = em.createQuery(" FROM Car c where c.year>=?1");
+        newQuery.setParameter(1, year);
+        List <Car> result = newQuery.getResultList();
+        ArrayList<CarDTO> resultDTO = new ArrayList<>();
+        for (Car car : result) {
+            resultDTO.add(carToCarDTO(car));
+        }
+        return resultDTO;
+    }
 
 }
+

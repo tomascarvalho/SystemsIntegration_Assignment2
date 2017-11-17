@@ -1,11 +1,13 @@
 servlet/LoginFilter.class
-servlet/EditProfile.class
 servlet/ViewCarDetails.class
-servlet/Cars.class
-servlet/Login.class
 servlet/FollowCar.class
 servlet/DeleteAccount.class
 servlet/Logout.class
-servlet/AddCar.class
 servlet/Register.class
+servlet/EditProfile.class
+servlet/Cars.class
+servlet/Login.class
+servlet/UnfollowCar.class
+servlet/AddCar.class
+servlet/EditCar.class
 servlet/DeleteCar.class

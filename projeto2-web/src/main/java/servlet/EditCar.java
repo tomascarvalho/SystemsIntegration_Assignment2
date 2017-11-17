@@ -30,7 +30,7 @@ public class EditCar extends HttpServlet{
         long carId = Long.parseLong(request.getParameter("carID"));
 
 
-        String result = carEJBRemote.updateCarAccount(brand,model,mileage,month,year,price,adverterId,carId);
+        String result = carEJBRemote.updateCar(brand, model, mileage, month, year, price, adverterId, carId);
         System.out.println(result);
         if (result.equals("Success")) {
             session.setAttribute("success", result);

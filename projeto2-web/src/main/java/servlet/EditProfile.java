@@ -20,7 +20,6 @@ public class EditProfile extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
-        String email = (String) request.getParameter("email");
         String password = (String) request.getParameter("password");
         String newPassword = (String) request.getParameter("newPassword");
         String confirmPassword = (String) request.getParameter("confirmPassword");
@@ -28,7 +27,7 @@ public class EditProfile extends HttpServlet{
         String lastName = (String) request.getParameter("lastName");
         long uid = (long) session.getAttribute("userId");
 
-        String result = customerEJB.updateCustomerAccount(email, password, newPassword, confirmPassword, firstName, lastName, uid);
+        String result = customerEJB.updateCustomerAccount(password, newPassword, confirmPassword, firstName, lastName, uid);
 
         if (result.equals("Success")) {
             session.setAttribute("success", result);
