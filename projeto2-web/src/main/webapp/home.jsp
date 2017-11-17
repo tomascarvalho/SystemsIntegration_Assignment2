@@ -39,6 +39,10 @@
                                     <input type="hidden" name="carID" value="${car.id}">
                                     <input class="btn btn-danger" type="submit" value="Delete Car">
                                 </form>
+                                <form method="get" action="edit_car.jsp">
+                                    <input type="hidden" name="carID" value=${car.id}>
+                                    <input class="btn btn-danger" type="submit" value="Edit Car">
+                                </form>
                             </div>
                         </div>
                     </div>

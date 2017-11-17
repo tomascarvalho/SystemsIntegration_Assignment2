@@ -115,4 +115,94 @@ public class CarEJB implements CarEJBRemote{
         }
 
     }
+
+    public String updateCarAccount(String brand, String model, String mileage, String month, String year, String price, long customerId, long carId)
+    {
+
+        String response = "";
+
+        Car toUpdate = em.find(Car.class, carId);
+        if (toUpdate == null) {
+            response = "Something went wrong!";
+            return response;
+        }
+
+        //check if car belongs to customer
+        if(toUpdate.getCustomer().getId()==customerId){
+
+            System.out.println(brand);
+            System.out.printf(model);
+            System.out.println(mileage);
+            System.out.println(month);
+            System.out.println(year);
+            System.out.println(price);
+
+            if(brand.length()>1 ){
+                if(!brand.equals(toUpdate.getBrand())){
+                toUpdate.setBrand(brand);
+                response = "Success";
+                }
+                else {
+                    response = "Invalid brand name";
+                }
+            }
+
+
+            if(model.length()>1 ){
+                if( !model.equals(toUpdate.getModel())){
+                    toUpdate.setModel(model);
+                    response = "Success";
+                }
+                else{
+                response = "Invalid model name";
+                }
+            }
+
+            if(mileage.length()>1){
+                int intMileage = Integer.parseInt(mileage);
+                if(intMileage!=toUpdate.getMileage() && intMileage>=0){
+                    toUpdate.setMileage(intMileage);
+                    response = "Success";
+                }else{
+                    response = "Invalid mileage";
+                }
+            }
+
+            if(month.length()>1){
+                if(!month.equals(toUpdate.getMonth())){
+                toUpdate.setMonth(month);
+                response = "Success";
+                }
+                else{
+                 response = "Invalid month";
+                }
+            }
+
+            if(year.length()>1) {
+                int intYear = Integer.parseInt(year);
+
+                toUpdate.setYear(intYear);
+                response = "Success";
+            }else{
+                response="Invalid year";
+            }
+
+            if(price.length()>1){
+
+                int intPrice = Integer.parseInt(price);
+                    if(intPrice!=toUpdate.getPrice() && intPrice>0){
+                    toUpdate.setPrice(intPrice);
+                    response = "Success";
+                }else{
+                    response ="Invalid price";
+                }
+            }
+
+            return response;
+
+        }else{
+            return response = "Access denied!";
+        }
+    }
+
 }
