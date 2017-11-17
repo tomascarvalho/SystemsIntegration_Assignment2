@@ -6,6 +6,7 @@ import data.Customer;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
@@ -87,5 +88,30 @@ public class CarEJB implements CarEJBRemote{
             System.err.println(e);
             return null;
         }
+    }
+
+    public List<CarDTO> getAllCars() {
+        try {
+            Query newQuery = em.createQuery(" FROM Car");
+            List<Car> allCars = newQuery.getResultList();
+            List<CarDTO> allCarsDTO = null;
+            for (Car car : allCars) {
+                CarDTO carDTO = new CarDTO();
+                carDTO.setId(car.getId());
+                carDTO.setBrand(car.getBrand());
+                carDTO.setModel(car.getModel());
+                carDTO.setMileage(car.getMileage());
+                carDTO.setPrice(car.getPrice());
+                carDTO.setOwner(car.getCustomer());
+                carDTO.setImageUrl(car.getImageUrl());
+                carDTO.setYear(car.getYear());
+                carDTO.setMonth(car.getMonth());
+                allCarsDTO.add(carDTO);
+            }
+            return allCarsDTO;
+        } catch(NoResultException nre) {
+            return null;
+        }
+
     }
 }

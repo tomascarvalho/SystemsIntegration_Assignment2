@@ -23,7 +23,7 @@
                         <a class="nav-link" href="edit_profile.jsp">Editar Perfil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Services</a>
+                        <a class="nav-link" href="cars">Search Cars</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="logout">Logout</a>
