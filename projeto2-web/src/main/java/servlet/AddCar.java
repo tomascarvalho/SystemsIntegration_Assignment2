@@ -43,7 +43,7 @@ public class AddCar extends HttpServlet {
         long adverterId = (long) session.getAttribute("userId");
 
         //dumb path
-        String savePath = "/Users/jorgearaujo/SystemsIntegration_Assignment2/images"; //specify your path here
+        String savePath = "/Users/tomas/SystemsIntegration_Assignment2/images"; //specify your path here
         File fileSaveDir=new File(savePath);
 
         //check dir existence
@@ -51,21 +51,22 @@ public class AddCar extends HttpServlet {
             fileSaveDir.mkdir();
         }
 
-        CustomerDTO customerDTO = carRemote.createCar(brand,model,mileage,month,year,price,adverterId);
+        //save photo
+        UUID photoUuid = UUID.randomUUID();
+        Part part=request.getPart("photo");
+        String filename = getFileName(part).replaceAll(" ","");
+        String newFilename =  File.separator+photoUuid+filename;
+        part.write(savePath + newFilename);
+        String imageURL = "/images"+newFilename;
+
+
+        CustomerDTO customerDTO = carRemote.createCar(brand,model,mileage,month,year,price,adverterId,imageURL);
         if(customerDTO != null)
         {
 
             session.setAttribute("notification", "Car Adverted Successfully");
             session.setAttribute("user", customerDTO);
             response.sendRedirect(request.getContextPath() +"/addcar.jsp");
-            //save photo
-            UUID photoUuid = UUID.randomUUID();
-            Part part=request.getPart("photo");
-            String filename = getFileName(part);
-            String newFilename =  File.separator+photoUuid+filename;
-            part.write(savePath + newFilename);
-            session.setAttribute("imagePath",newFilename);
-            response.sendRedirect(request.getContextPath()+"/imageDisplay.jsp");
 
         }
         else

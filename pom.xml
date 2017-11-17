@@ -211,8 +211,6 @@
                 <artifactId>hibernate-core</artifactId>
                 <version>5.2.6.Final</version>
             </dependency>
-
-
     </dependencies>
 	</dependencyManagement>
 
@@ -298,6 +296,11 @@
 				</plugin>
 			</plugins>
 		</pluginManagement>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
 	</build>
 
 

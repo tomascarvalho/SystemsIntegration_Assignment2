@@ -38,6 +38,16 @@ public class Car implements Serializable {
         this.customer = customer;
     }
 
+    public Car(String brand, String model, int mileage, String month, int year, int price, Customer customer, String imageUrl) {
+        this.brand = brand;
+        this.model = model;
+        this.mileage = mileage;
+        this.month = month;
+        this.year = year;
+        this.price = price;
+        this.imageUrl = imageUrl;
+        this.customer = customer;
+    }
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
