@@ -33,7 +33,7 @@
     <orderEntry type="library" scope="PROVIDED" name="Maven: junit:junit:3.8.1" level="project" />
     <orderEntry type="module" module-name="projeto2-business" />
     <orderEntry type="module" module-name="projeto2-data" />
-    <orderEntry type="library" name="Maven: log4j:log4j:1.2.12" level="project" />
+    <orderEntry type="library" name="Maven: log4j:log4j:1.2.17" level="project" />
     <orderEntry type="library" name="Maven: org.jsoup:jsoup:1.10.3" level="project" />
     <orderEntry type="library" name="Maven: commons-beanutils:commons-beanutils:1.9.3" level="project" />
     <orderEntry type="library" name="Maven: commons-collections:commons-collections:3.2.2" level="project" />

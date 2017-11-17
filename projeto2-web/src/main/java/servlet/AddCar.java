@@ -43,7 +43,7 @@ public class AddCar extends HttpServlet {
         long adverterId = (long) session.getAttribute("userId");
 
         //dumb path
-        String savePath = "/Users/jorgearaujo/SystemsIntegration_Assignment2/images"; //specify your path here
+        String savePath = "/Users/tomas/SystemsIntegration_Assignment2/images"; //specify your path here
         File fileSaveDir=new File(savePath);
 
         //check dir existence

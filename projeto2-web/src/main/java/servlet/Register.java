@@ -25,6 +25,8 @@ public class Register extends HttpServlet{
         String password = (String) request.getParameter("password");
         String firstName = (String) request.getParameter("firstName");
         String lastName = (String) request.getParameter("lastName");
+        session.removeAttribute("error");
+        session.removeAttribute("success");
         System.out.println("CALLING CREATE USER WITH: EMAIL: " + email + " password: " + password + " firstName: " + firstName + " lastName: "+ lastName);
         String result = authEJB.createCustomerAccount(email, password, firstName, lastName);
 

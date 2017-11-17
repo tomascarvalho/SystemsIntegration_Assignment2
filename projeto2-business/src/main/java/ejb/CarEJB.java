@@ -6,18 +6,23 @@ import data.Customer;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.util.ArrayList;
 import java.util.List;
 
 import dto.CarDTO;
 import dto.CustomerDTO;
+import ejb.CustomerEJB;
+import org.jboss.logging.Logger;
 
 /**
  * Created by jorgearaujo on 15/11/2017.
  */
 @Stateless
 public class CarEJB implements CarEJBRemote{
+    final static Logger logger = Logger.getLogger(CarEJB.class);
     @PersistenceContext(name="Cars")
     EntityManager em;
     @EJB
@@ -34,21 +39,23 @@ public class CarEJB implements CarEJBRemote{
                 Car newCar = new Car(brand, model, mileage, month, year, price, adverter, imageURL);
                 adverter.getCars().add(newCar);
                 em.persist(newCar);
+
+                logger.debug("Debug: new car created " + newCar.toString());
+
             } catch (Exception e) {
-                e.printStackTrace();
+                //logs an exception thrown from somewhere
+                logger.error("Exception: ", e);
                 return null;
             }
             CustomerDTO customerDTO = new CustomerDTO();
-            customerDTO.setId(adverter.getId());
-            customerDTO.setFirstName(adverter.getFirstName());
-            customerDTO.setLastName(adverter.getLastName());
-            customerDTO.setEmail(adverter.getEmail());
-            customerDTO.setCars(adverter.getCars());
+            customerDTO = customerToCustomerDTO(adverter);
             return customerDTO;
 
         }catch(Exception e)
         {
             e.printStackTrace();
+            //logs an exception thrown from somewhere
+            logger.error("Exception: ", e);
             return null;
         }
     }
@@ -67,28 +74,50 @@ public class CarEJB implements CarEJBRemote{
                     List <Car> relatedCars = newQuery.getResultList();
 
                     CarDTO carDTO = new CarDTO();
-                    carDTO.setId(car.getId());
-                    carDTO.setBrand(car.getBrand());
-                    carDTO.setModel(car.getModel());
-                    carDTO.setMileage(car.getMileage());
-                    carDTO.setPrice(car.getPrice());
-                    carDTO.setOwner(car.getCustomer());
-                    carDTO.setImageUrl(car.getImageUrl());
-                    carDTO.setRelatedCars(relatedCars);
-                    carDTO.setYear(car.getYear());
-                    carDTO.setMonth(car.getMonth());
+                    carDTO = carToCarDTO(car);
+                    ArrayList<CarDTO> relatedCarsDTO = new ArrayList<>();
+                    for (Car relatedCar : relatedCars) {
+                        relatedCarsDTO.add(carToCarDTO(relatedCar));
+                    }
+                    carDTO.setRelatedCars(relatedCarsDTO);
+                    //logs a debug message
+                    logger.debug("Debug: getting car" + car.toString());
                     return carDTO;
                 } catch(Exception e) {
-                    System.err.println(e);
+                    //logs an exception thrown from somewhere
+                    logger.error("Exception: ", e);
                     return null;
                 }
             }
         } catch (Exception e) {
-            System.err.println(e);
+            //logs an exception thrown from somewhere
+            logger.error("Exception: ", e);
             return null;
         }
     }
 
+    public ArrayList<CarDTO> getAllCars() {
+        try {
+            Query newQuery = em.createQuery(" FROM Car");
+            List<Car> allCars = newQuery.getResultList();
+            ArrayList<CarDTO> allCarsDTO = new ArrayList<>();
+            for (Car car : allCars) {
+                allCarsDTO.add(carToCarDTO(car));
+            }
+            logger.debug("Debug: returning all cars...");
+            return allCarsDTO;
+
+        } catch (NoResultException nre) {
+            logger.debug("Debug: No cars found...");
+            logger.error("Exception: ", nre);
+
+            return null;
+        } catch (Exception e) {
+            logger.error("Exception: ", e);
+            return null;
+
+        }
+    }
     public CustomerDTO carDelete(long carID, long customerID)
     {
         try{
@@ -101,11 +130,7 @@ public class CarEJB implements CarEJBRemote{
             CustomerDTO customerDTO = new CustomerDTO();
             Customer customer = em.find(Customer.class, userID);
             customer.getCars().remove(car);
-            customerDTO.setId(customer.getId());
-            customerDTO.setFirstName(customer.getFirstName());
-            customerDTO.setLastName(customer.getLastName());
-            customerDTO.setEmail(customer.getEmail());
-            customerDTO.setCars(customer.getCars());
+            customerDTO = customerToCustomerDTO(customer);
 
             return customerDTO;
         }catch(Exception e)
@@ -204,5 +229,54 @@ public class CarEJB implements CarEJBRemote{
             return response = "Access denied!";
         }
     }
+
+
+    public CarDTO carToCarDTO(Car car) {
+        CarDTO carDTO = new CarDTO();
+        carDTO.setId(car.getId());
+        carDTO.setBrand(car.getBrand());
+        carDTO.setModel(car.getModel());
+        carDTO.setMileage(car.getMileage());
+        carDTO.setPrice(car.getPrice());
+        carDTO.setOwnerId(car.getCustomer().getId());
+        carDTO.setImageUrl(car.getImageUrl());
+        carDTO.setYear(car.getYear());
+        carDTO.setMonth(car.getMonth());
+
+        return carDTO;
+    }
+
+    public CustomerDTO customerToCustomerDTO(Customer customer) {
+        CustomerDTO customerDTO = new CustomerDTO();
+        ArrayList cars = new ArrayList();
+        customerDTO.setId(customer.getId());
+        customerDTO.setFirstName(customer.getFirstName());
+        customerDTO.setLastName(customer.getLastName());
+        customerDTO.setEmail(customer.getEmail());
+        for (Car car : customer.getCars()) {
+            cars.add(carToCarDTO(car));
+        }
+        customerDTO.setCars(cars);
+
+        return customerDTO;
+    }
+
+    public String followCar(long carID, long userID) {
+        try {
+            Car car = em.find(Car.class, carID);
+            Customer customer = em.find(Customer.class, userID);
+            if (car.getFollowers().contains(customer)) {
+                return "You already follow this car!";
+            }
+            car.getFollowers().add(customer);
+            return "Success";
+
+        } catch (Exception e) {
+            return "Error following this car";
+        }
+
+
+    }
+
 
 }

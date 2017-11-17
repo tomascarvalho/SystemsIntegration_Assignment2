@@ -21,7 +21,6 @@ public class DeleteCar extends HttpServlet {
 
     @EJB
     private CarEJBRemote carEJBRemote;
-    private CustomerEJBRemote customerEJBRemote;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -31,6 +30,8 @@ public class DeleteCar extends HttpServlet {
         long carId = Long.parseLong(request.getParameter("carID"));
         CustomerDTO customerDTO = (CustomerDTO) session.getAttribute("user");
         CustomerDTO result  = carEJBRemote.carDelete(carId, customerDTO.getId());
+        session.removeAttribute("error");
+        session.removeAttribute("success");
 
         if (result != null) {
             session.setAttribute("success", result);

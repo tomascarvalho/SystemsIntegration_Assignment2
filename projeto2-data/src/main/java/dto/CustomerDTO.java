@@ -11,7 +11,7 @@ public class CustomerDTO implements Serializable {
     public String email;
     public String firstName;
     public String lastName;
-    public List<Car> cars;
+    public List<CarDTO> cars;
 
     public CustomerDTO() {
 
@@ -49,12 +49,11 @@ public class CustomerDTO implements Serializable {
         this.lastName = lastName;
     }
 
-    public List<Car> getCars() {
+    public List<CarDTO> getCars() {
         return cars;
     }
 
-    public void setCars(List<Car> cars) {
+    public void setCars(List<CarDTO> cars) {
         this.cars = cars;
     }
-
 }

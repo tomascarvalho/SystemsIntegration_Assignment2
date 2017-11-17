@@ -17,14 +17,14 @@
 
         <!-- Page Heading -->
         <h1 class="my-4">Your Cars
-            <br><small>Welcome ${user.getFirstName()}!</small>
+            <br><small>Welcome ${user.firstName}!</small>
         </h1>
 
         <div class="row">
-            <c:forEach items="${user.getCars()}" var="car">
+            <c:forEach items="${user.cars}" var="car">
                     <div class="col-lg-4 col-sm-6 portfolio-item">
                         <div class="card h-100">
-                            <a href="car?id=${car.id}"><img class="card-img-top" src="http://placehold.it/700x400" alt="Car description"></a>
+                            <a href="car?id=${car.id}"><img class="card-img-top" src="${car.imageUrl}" alt="Car description"></a>
                             <div class="card-body">
                                 <h4 class="card-title">
                                     <a href="car?id=${car.id}">${car.brand} ${car.model}</a>
@@ -35,6 +35,10 @@
                                 <p class="card-text">Mileage: ${car.mileage}km</p>
                                 <p class="card-text">Year: ${car.year}</p>
                                 <p class="card-text">Month: ${car.month}</p>
+                                <form action="delete_car" method="post">
+                                    <input type="hidden" name="carID" value="${car.id}">
+                                    <input class="btn btn-danger" type="submit" value="Delete Car">
+                                </form>
                             </div>
                         </div>
                     </div>

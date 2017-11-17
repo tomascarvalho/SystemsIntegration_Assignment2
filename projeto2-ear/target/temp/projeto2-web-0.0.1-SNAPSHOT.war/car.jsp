@@ -19,7 +19,7 @@
     <div class="row">
 
         <div class="col-md-8">
-            <img class="img-fluid" src="http://placehold.it/750x500" alt="">
+            <img class="img-fluid" src=${car.imageUrl} alt="">
         </div>
 
         <div class="col-md-4">
@@ -37,6 +37,30 @@
                 <li>Month: ${car.month}</li>
             </ul>
         </div>
+        <form action="follow_car" method="post">
+            <input type="hidden" name="carID" value="${car.id}">
+            <input class="btn btn-primary" type="submit" value="Follow Car">
+        </form>
+        <form action="unfollow_car" method="post">
+            <input type="hidden" name="carID" value="${car.id}">
+            <input class="btn btn-secondaty" type="submit" value="Unfollow Car">
+        </form>
+        <c:if test="${car.ownerId == userId}">
+            <form action="delete_car" method="post">
+                <input type="hidden" name="carID" value="${car.id}">
+                <input class="btn btn-danger" type="submit" value="Delete Car">
+            </form>
+        </c:if>
+        <c:if test="${error.length() > 0}">
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    ${error}
+            </div>
+        </c:if>
+        <c:if test="${success.length() > 0}">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    ${success}
+            </div>
+        </c:if>
 
     </div>
     <!-- /.row -->

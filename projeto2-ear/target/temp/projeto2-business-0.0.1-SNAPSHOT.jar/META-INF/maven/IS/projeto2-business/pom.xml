@@ -56,9 +56,13 @@
 			<artifactId>jboss-logging</artifactId>
 			<version>3.1.0.CR2</version>
 		</dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+        </dependency>
 
 
-	</dependencies>
+    </dependencies>
 
 	<build>
 		<finalName>${project.artifactId}</finalName>

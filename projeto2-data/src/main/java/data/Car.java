@@ -2,6 +2,7 @@ package data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 /**
  * Entity implementation class for Entity: Car
  *
@@ -22,6 +23,8 @@ public class Car implements Serializable {
     private String imageUrl;
     @ManyToOne
     private Customer customer;
+    @OneToMany
+    private List<Customer> followers;
 
     public Car() {
         super();
@@ -123,6 +126,14 @@ public class Car implements Serializable {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public List<Customer> getFollowers() {
+        return followers;
+    }
+
+    public void setFollowers(List<Customer> followers) {
+        this.followers = followers;
     }
 
     @Override
