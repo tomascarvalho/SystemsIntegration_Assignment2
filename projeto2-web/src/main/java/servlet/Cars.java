@@ -56,7 +56,7 @@ public class Cars extends HttpServlet {
             }
 
         } else if (km_from != null && !km_from.isEmpty() && option==4) {
-            if (!price_to.isEmpty()) {
+            if (km_to != null && !km_to.isEmpty()) {
                 List <CarDTO> getAllCars = carRemote.getCarsByKm(Integer.parseInt(km_from), Integer.parseInt(km_to));
                 session.setAttribute("cars", getAllCars);
                 response.sendRedirect(request.getContextPath() +"/cars.jsp");
@@ -68,6 +68,7 @@ public class Cars extends HttpServlet {
             response.sendRedirect(request.getContextPath() +"/cars.jsp");
         } else {
             //Retrieve all cars
+            System.out.println("Getting all cars");
             List<CarDTO> allCars = carRemote.getAllCars();
             session.setAttribute("cars", allCars);
             response.sendRedirect(request.getContextPath() +"/cars.jsp");

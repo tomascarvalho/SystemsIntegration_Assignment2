@@ -49,8 +49,7 @@
             <option value="2">Brand and Model</option>
             <option value="3">Price from... to...</option>
             <option value="4">Mileage from... to...</option>
-            <option value="5">Price from... to...</option>
-            <option value="6">Year since,,,</option>
+            <option value="5">Year since...</option>
         </select>
     </div>
     <button class="btn btn-primary" type="submit">Search</button>

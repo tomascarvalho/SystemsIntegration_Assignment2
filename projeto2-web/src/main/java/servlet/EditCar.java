@@ -6,6 +6,7 @@ import javax.ejb.EJB;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
+import dto.CustomerDTO;
 
 
 /**
@@ -30,16 +31,16 @@ public class EditCar extends HttpServlet{
         long carId = Long.parseLong(request.getParameter("carID"));
 
 
-        String result = carEJBRemote.updateCar(brand, model, mileage, month, year, price, adverterId, carId);
-        System.out.println(result);
-        if (result.equals("Success")) {
-            session.setAttribute("success", result);
+        CustomerDTO customerDTO = carEJBRemote.updateCar(brand, model, mileage, month, year, price, adverterId, carId);
+        if (customerDTO != null) {
+            session.removeAttribute("user");
+            session.setAttribute("user", customerDTO);
             response.sendRedirect(request.getContextPath() + "/home.jsp");
         }
 
         else{
             System.out.println("Error editing car"); // This has to be logged
-            session.setAttribute("error", result);
+            session.setAttribute("error", "Error editing car");
             response.sendRedirect(request.getContextPath() + "/home.jsp");
         }
     }

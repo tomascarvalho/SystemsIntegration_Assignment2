@@ -16,7 +16,7 @@ public interface CarEJBRemote {
     CarDTO readCar(long carID);
     ArrayList<CarDTO> getAllCars();
     CustomerDTO carDelete(long carID, long customerID);
-    String updateCar(String brand, String model, String mileage, String month, String year, String price, long customerId, long carId);
+    CustomerDTO updateCar(String brand, String model, String mileage, String month, String year, String price, long customerId, long carId);
     String followCar(long carID, long customerID);
     String unfollowCar(long carID, long userID);
     List<CarDTO> getCarsByBrandModel(String brand, String model);

@@ -140,7 +140,7 @@ public class CarEJB implements CarEJBRemote{
 
     }
 
-    public String updateCar(String brand, String model, String mileage, String month, String year, String price, long customerId, long carId)
+    public CustomerDTO updateCar(String brand, String model, String mileage, String month, String year, String price, long customerId, long carId)
     {
 
         String response = "";
@@ -148,7 +148,7 @@ public class CarEJB implements CarEJBRemote{
         Car toUpdate = em.find(Car.class, carId);
         if (toUpdate == null) {
             response = "Something went wrong!";
-            return response;
+            return null;
         }
 
         //check if car belongs to customer
@@ -219,10 +219,15 @@ public class CarEJB implements CarEJBRemote{
                 }
             }
 
-            return response;
+            if (response.equals("Success")) {
+                CustomerDTO customerDTO = customerToCustomerDTO(toUpdate.getCustomer());
+                return customerDTO;
+            }
+            System.out.println(response);
+            return null;
 
         }else{
-            return response = "Access denied!";
+            return null;
         }
     }
 

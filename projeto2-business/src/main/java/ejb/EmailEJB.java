@@ -1,7 +1,5 @@
 package ejb;
 
-import data.Customer;
-
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.mail.Message;
@@ -10,12 +8,11 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.util.Properties;
 
 @Stateless
 public class EmailEJB {
 
-    @Resource(name = "java:/jboss/mail/gmail")
+    @Resource(lookup = "java:/jboss/mail/gmail")
     private Session session;
 
     public EmailEJB() {
